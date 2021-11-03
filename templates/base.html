@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} | SMS Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            width: 100%;
+            padding: 0;
+        }
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block body %}
+        <h1 class="center">Nothing configured!</h1>
+        <p>No template inheritance configured.</p>
+        {% endblock %}
+    </div>
+</body>
+</html>
