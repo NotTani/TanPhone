@@ -1,2 +1,47 @@
-{% extends "base.html" %}
-{% block title %}Home{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Thing</title>
+    <link href="static/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="container">
+    <div class="top-flex">
+
+        <div id="warning" class="column">
+            <img src="/static/assets/warn.png">
+            <p>To continue, please configure an endpoint.</p>
+            <input id='endpoint-input' class="command-input" type='text'>
+        </div>
+
+        <div class="column" id="info" style="display: none;">
+            <img src="/static/assets/good.png">
+            <p class="caption">Things are all good!</p>
+            <h1>Modem Dashboard</h1>
+            <p>
+                NETWORK: <span id="network"></span><br>
+                SERIAL: [<span id="serial-state"></span>]<br>
+                NUMBER: <span id="number"></span><br>
+                EMOTIONAL STATE: [<span class="warn">SLIGHTLY BETTER!</span>]
+            </p>
+        </div>
+
+        <div class="column" id="common_commands" style="display: none;">
+            <h1>Common Commands</h1>
+            <button id="close_conn_button">Close Connection</button>
+        </div>
+
+        <div class="column" id="console" style="display: none;">
+            <h4>AT Console</h4>
+            <div class="console"></div>
+            <input id='command-input' class="command-input" type="text">
+        </div>
+    </div>
+</div>
+<h3>Copyright Devin studios, this was made by Devin <3</h3>
+
+<script src="static/script.js"></script>
+</body>
+</html>
