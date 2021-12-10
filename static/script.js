@@ -5,6 +5,7 @@ let endpoint_input = document.querySelector('#endpoint-input');
 let socket = null;
 
 let close_conn_button = document.querySelector('#close_conn_button');
+let check_signal_button = document.querySelector('#check_signal_button');
 
 
 function submitCommand(command_text, sender) {
@@ -58,9 +59,10 @@ async function initConnection(e) {
     document.querySelector('#common_commands').style.display = 'block';
 
     let data = await fetchData("http://localhost/api/info");
-    document.querySelector('#network').innerHTML = data.network;
-    document.querySelector('#serial-state').innerHTML = data.serial;
-    document.querySelector('#number').innerHTML = data.number;
+    const {network, serial, number} = data;
+    document.querySelector('#network').innerHTML = network;
+    document.querySelector('#serial-state').innerHTML = serial;
+    document.querySelector('#number').innerHTML = number;
 
     socket = new WebSocket("ws://localhost/api/ws");
 
@@ -77,9 +79,13 @@ async function initConnection(e) {
         };
 
         close_conn_button.onclick = async function (e) {
-            submitCommand("User issued close command", "system");
             await socket.send("@CLOSE");
         }
+
+        check_signal_button.onclick = async function (e) {
+            await socket.send("AT+CSQ");
+        }
+
 
         socket.onmessage = function (e) {
             submitCommand(e.data, "modem");
